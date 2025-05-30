@@ -1,0 +1,52 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+/* Samurai specific styles - lower priority than profile card styles */
+.samurai-container {
+  position: absolute;
+  z-index: 1001; /* Higher than card-container (999) and nebula button (1000) */
+  /* Initial position will be set by JavaScript */
+}
+
+.samurai {
+  width: 96px;
+  height: 96px;
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+  transform: scale(2.08); /* Doubled size from 1.04 to 2.08 */
+  transform-origin: center;
+  overflow: hidden;
+  transition: transform 0.1s linear;
+}
+
+.samurai.idle {
+  background-image: url("https://assets.codepen.io/97137/s__IDLE.png") !important; 
+  animation: idle 0.7s steps(10, end) infinite !important;
+}
+
+.samurai.run {
+  background-image: url("https://assets.codepen.io/97137/s_RUN.png"); 
+  animation: run 1.5s steps(16) infinite;
+}
+
+@keyframes idle {
+  0% {
+    background-position-x: 0;
+  }
+  100% {
+    background-position-x: -960px;
+  }
+}
+
+@keyframes run {
+  0% {
+    background-position-x: 0;
+  }
+  100% {
+    background-position-x: -1536px;
+  }
+}
+
+/* Hide samurai when about section is shown */
+.samurai-container.hidden {
+  display: none;
+}

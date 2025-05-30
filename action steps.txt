@@ -1,0 +1,2 @@
+1. Make about.html
+2.  and other pages. Then integrate with slide and animation
