@@ -1,3 +1,4 @@
+
 window.addEventListener("load", function () {
   const samurai = document.querySelector(".samurai");
   const container = document.querySelector(".samurai-container");
@@ -13,6 +14,7 @@ window.addEventListener("load", function () {
   const speed = 10;
   let facingRight = true;
   let isInProfileContainer = true;
+  let isNearNebulaButton = false; // Track proximity to nebula button
   
   // Set initial position in profile container
   container.style.left = positionX + 'px';
@@ -29,6 +31,47 @@ window.addEventListener("load", function () {
   const setIdle = () => {
     removeClasses();
     samurai.classList.add("idle");
+  };
+
+  const checkNebulaButtonProximity = () => {
+    const nebulaButton = document.querySelector('.nebula-button-north');
+    if (!nebulaButton) return false;
+    
+    const nebulaRect = nebulaButton.getBoundingClientRect();
+    const samuraiCenterX = positionX + 100; // Center of samurai (doubled size)
+    const samuraiCenterY = positionY + 100;
+    
+    // Expanded interaction area - check if samurai is within 50px of button edges
+    const proximityDistance = 50;
+    const wasNearButton = isNearNebulaButton;
+    
+    isNearNebulaButton = (
+      samuraiCenterX >= nebulaRect.left - proximityDistance &&
+      samuraiCenterX <= nebulaRect.right + proximityDistance &&
+      samuraiCenterY >= nebulaRect.top - proximityDistance &&
+      samuraiCenterY <= nebulaRect.bottom + proximityDistance
+    );
+    
+    // Simulate CSS hover state when near
+    if (wasNearButton !== isNearNebulaButton) {
+      if (isNearNebulaButton) {
+        // Apply the same hover effect from CSS by directly styling the checkmark
+        const checkmark = nebulaButton.querySelector('.checkmark');
+        if (checkmark) {
+          checkmark.style.transform = 'scale(1.1)';
+          checkmark.style.boxShadow = '0 0 12px rgba(75, 94, 170, 0.5)';
+        }
+      } else {
+        // Remove hover effect
+        const checkmark = nebulaButton.querySelector('.checkmark');
+        if (checkmark) {
+          checkmark.style.transform = '';
+          checkmark.style.boxShadow = '';
+        }
+      }
+    }
+    
+    return isNearNebulaButton;
   };
 
   const checkIfInProfileContainer = () => {
@@ -92,6 +135,7 @@ window.addEventListener("load", function () {
     container.style.top = positionY + 'px';
     
     checkIfInProfileContainer();
+    checkNebulaButtonProximity(); // Check button proximity every frame
   };
 
   window.addEventListener("keydown", function (ev) {
@@ -119,6 +163,14 @@ window.addEventListener("load", function () {
         break;
       case "k":
         samurai.classList.add("attack");
+        // Check if samurai is near nebula button and toggle it
+        if (isNearNebulaButton) {
+          const toggleButton = document.getElementById('toggleAbout');
+          if (toggleButton) {
+            toggleButton.click();
+            console.log("Nebula button toggled!"); // Debug log
+          }
+        }
         break;
     }
   });
