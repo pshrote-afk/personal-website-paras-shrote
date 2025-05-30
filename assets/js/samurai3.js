@@ -56,7 +56,7 @@ window.addEventListener("load", function () {
 
   const updatePosition = () => {
     // Move right
-    if (keys["d"]) {
+    if (keys["d"] || keys["ArrowRight"]) {
       positionX += speed;
       if (positionX > window.innerWidth - 200) { // Doubled from 100
         positionX = window.innerWidth - 200;
@@ -65,7 +65,7 @@ window.addEventListener("load", function () {
       samurai.style.transform = "scaleX(2.08) scaleY(2.08)"; // Doubled scale
     }
     // Move left
-    if (keys["a"]) {
+    if (keys["a"] || keys["ArrowLeft"]) {
       positionX -= speed;
       if (positionX < 0) {
         positionX = 0;
@@ -74,14 +74,14 @@ window.addEventListener("load", function () {
       samurai.style.transform = "scaleX(-2.08) scaleY(2.08)"; // Doubled scale
     }
     // Move up
-    if (keys["w"]) {
+    if (keys["w"] || keys["ArrowUp"]) {
       positionY -= speed;
       if (positionY < 0) {
         positionY = 0;
       }
     }
     // Move down
-    if (keys["s"]) {
+    if (keys["s"] || keys["ArrowDown"]) {
       positionY += speed;
       if (positionY > window.innerHeight - 200) { // Doubled from 100
         positionY = window.innerHeight - 200;
@@ -95,30 +95,47 @@ window.addEventListener("load", function () {
   };
 
   window.addEventListener("keydown", function (ev) {
-    if (["a", "d", "w", "s"].includes(ev.key)) {
-      classes = Array.from(samurai.classList);
-      removeClasses();
-      keys[ev.key] = true;
-
-      switch (ev.key) {
-        case "d":
-        case "a":
-        case "w":
-        case "s":
-          samurai.classList.add("run");
-          break;
-      }
+    classes = Array.from(samurai.classList);
+    console.log("keydown");
+    removeClasses();
+    keys[ev.key] = true;
+    
+    switch (ev.key) {
+      case "d":
+      case "ArrowRight":
+        samurai.style.transform = "scaleX(2.08) scaleY(2.08)";
+        samurai.classList.add("run");
+        break;
+      case "a":
+      case "ArrowLeft":
+        samurai.style.transform = "scaleX(-2.08) scaleY(2.08)";
+        samurai.classList.add("run");
+        break;
+      case "w":
+      case "s":
+      case "ArrowUp":
+      case "ArrowDown":
+        samurai.classList.add("run");
+        break;
+      case "k":
+        samurai.classList.add("attack");
+        break;
     }
   });
 
   window.addEventListener("keyup", function (ev) {
-    if (["a", "d", "w", "s"].includes(ev.key)) {
-      keys[ev.key] = false;
-      if (!keys["a"] && !keys["d"] && !keys["w"] && !keys["s"]) {
+    keys[ev.key] = false;
+    setIdle();
+  });
+
+  setInterval(() => {
+    for (let key in keys) {
+      if (!keys["a"] && !keys["d"] && !keys["w"] && !keys["s"] && !keys["k"] && 
+          !keys["ArrowLeft"] && !keys["ArrowRight"] && !keys["ArrowUp"] && !keys["ArrowDown"]) {
         setIdle();
       }
     }
-  });
+  }, 100);
 
   // Handle window resize
   window.addEventListener("resize", function() {

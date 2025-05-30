@@ -28,6 +28,11 @@
   animation: run 1.5s steps(16) infinite;
 }
 
+.samurai.attack {
+  background-image: url("https://assets.codepen.io/97137/s__ATTACK+1.png");
+  animation: attack 0.35s steps(7, end) infinite;
+}
+
 @keyframes idle {
   0% {
     background-position-x: 0;
@@ -43,6 +48,15 @@
   }
   100% {
     background-position-x: -1536px;
+  }
+}
+
+@keyframes attack {
+  0% {
+    background-position-x: 0;
+  }
+  100% {
+    background-position-x: -672px;
   }
 }
 
