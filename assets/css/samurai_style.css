@@ -1,69 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html {
-  font-size: 62.5%;
-  font-optical-sizing: auto;
-  font-family: "Press Start 2P", system-ui;
-  font-weight: 400;
-  font-style: normal;
-}
-
-html,
-body {
-  width: 100vw;
-  min-height: 100vh;
-  min-height: 100dvh;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  background-color: #7c7c7c;
-  overflow-x: hidden;
-  display: grid;
-  grid-template-rows: repeat(2, auto);
-  align-items: center;
-  justify-items: center;
-}
-
-.main {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-}
-
-h1 {
-  margin: 0;
-  padding: 0;
-}
-
-.logo {
-  color: #edab50;
-  font-size: clamp(4rem, 10vw, 8rem);
-  text-align: center;
-  text-transform: uppercase;
-  text-shadow: 0 5px 0 #dc7237, 0 15px 0 #8c241d;
-}
-
-.subheading {
-  margin-top: 2rem;
-  text-align: center;
-  font-size: 1.6rem;
-  color: white;
-}
-
+/* Samurai specific styles - lower priority than profile card styles */
 .samurai-container {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  z-index: 1001; /* Higher than card-container (999) and nebula button (1000) */
+  /* Initial position will be set by JavaScript */
 }
 
 .samurai {
@@ -71,20 +12,20 @@ h1 {
   height: 96px;
   background-repeat: no-repeat;
   image-rendering: pixelated;
-  transform: scale(4);
+  transform: scale(2.08); /* Doubled size from 1.04 to 2.08 */
   transform-origin: center;
   overflow: hidden;
   transition: transform 0.1s linear;
 }
 
 .samurai.idle {
-  background-image: url("https://assets.codepen.io/97137/s__IDLE.png") !important;
-  animation: idle 1s steps(10, end) infinite !important;
+  background-image: url("https://assets.codepen.io/97137/s__IDLE.png") !important; 
+  animation: idle 0.7s steps(10, end) infinite !important;
 }
 
 .samurai.run {
-  background-image: url("https://assets.codepen.io/97137/s_RUN.png");
-  animation: run 1s steps(16) infinite;
+  background-image: url("https://assets.codepen.io/97137/s_RUN.png"); 
+  animation: run 1.5s steps(16) infinite;
 }
 
 .samurai.attack {
@@ -117,4 +58,9 @@ h1 {
   100% {
     background-position-x: -672px;
   }
+}
+
+/* Hide samurai when about section is shown */
+.samurai-container.hidden {
+  display: none;
 }
