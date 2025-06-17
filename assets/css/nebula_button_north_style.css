@@ -137,8 +137,8 @@ body {
   box-shadow: none;
 }
 
-/* About container initial hidden state */
-.about-container {
+/* Author container initial hidden state */
+.author-container {
   position: fixed;
   top: -100%;
   left: 50%;
@@ -150,8 +150,8 @@ body {
   z-index: 999;
 }
 
-/* Show about container sliding down */
-.about-container.slide-down-show {
+/* Show Author container sliding down */
+.author-container.slide-down-show {
   top: 50%;
   transform: translate(-50%, -50%);
   opacity: 1;

@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Store original text
     const originalText = bioText.textContent.trim();
-    const contactText = "mail: pshrote1@gmail.com<br><br>WhatsApp: +91 7744009712"; // contact placeholder
+    const contactText = "Email: pshrote1@gmail.com<br><br>WhatsApp: +91 7744009712"; // contact placeholder
     
     let isContactMode = false;
     let typingInProgress = false;

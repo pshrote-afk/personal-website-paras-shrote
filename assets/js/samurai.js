@@ -165,7 +165,7 @@ window.addEventListener("load", function () {
         samurai.classList.add("attack");
         // Check if samurai is near nebula button and toggle it
         if (isNearNebulaButton) {
-          const toggleButton = document.getElementById('toggleAbout');
+          const toggleButton = document.getElementById('toggleAuthor');
           if (toggleButton) {
             toggleButton.click();
             console.log("Nebula button toggled!"); // Debug log

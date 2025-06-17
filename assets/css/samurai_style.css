@@ -60,7 +60,7 @@
   }
 }
 
-/* Hide samurai when about section is shown */
+/* Hide samurai when Author section is shown */
 .samurai-container.hidden {
   display: none;
 }
