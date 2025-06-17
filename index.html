@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Inline CSS Profile Card</title>
-  <link rel="stylesheet" href="./assets/css/nebula_button_north_style.css" />
+  <link rel="stylesheet" href="./assets/css/nebula_button_style.css" />
   <link rel="stylesheet" href="./assets/css/samurai_style.css" />
 </head>
 <body>
@@ -59,11 +59,29 @@
     </div>
   </div>
 
+<!-- Testing East section -->
+  <div class="east-container" aria-hidden="true">
+    <h6>Testing EAST</h6>
+  </div>
+
 <!-- Nebula button north -->
   <div class="nebula-button-north">
     <div class="button-label">Author</div>
     <label class="container">
       <input type="checkbox" id="toggleAuthor" aria-controls="author-section" aria-expanded="false" />
+      <div class="checkbox-wrapper">
+        <div class="checkmark"></div>
+        <div class="nebula-glow"></div>
+        <div class="sparkle-container"></div>
+      </div>
+    </label>
+  </div>
+
+<!-- Nebula button east -->
+  <div class="nebula-button-east">
+    <div class="button-label">Triathlete</div>
+    <label class="container">
+      <input type="checkbox" id="toggleEast" aria-controls="east-section" aria-expanded="false" />
       <div class="checkbox-wrapper">
         <div class="checkmark"></div>
         <div class="nebula-glow"></div>
@@ -78,6 +96,7 @@
   </div>
 
 <script src="./assets/js/toggleAuthor.js"></script>
+<script src="./assets/js/toggleEast.js"></script>
 <script src="./assets/js/samurai.js"></script>
 <script src="./assets/js/toggleContact.js"></script>  <!--For displaying contact information onto card-->
 </body>
