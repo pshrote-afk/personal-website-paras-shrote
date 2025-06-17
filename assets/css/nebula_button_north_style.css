@@ -8,12 +8,12 @@ body {
   overflow-x: hidden;
 }
 
-/* Movement instructions */
+/* Movement instructions - left of card */
 .movement-instructions {
   position: absolute;
-  top: 17%;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 50%;
+  left: calc(50% - 160px - 160px); /* Card width/2 + offset */
+  transform: translateY(-50%);
   font-family: 'Space Mono', monospace;
   font-size: 12px;
   color: #000;
@@ -22,12 +22,12 @@ body {
   text-align: center;
 }
 
-/* Attack instructions */
+/* Attack instructions - right of card */
 .attack-instructions {
   position: absolute;
-  top: 82%;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 50%;
+  right: calc(50% - 160px - 230px); /* Card width/2 + offset */
+  transform: translateY(-50%);
   font-family: 'Space Mono', monospace;
   font-size: 12px;
   color: #000;
