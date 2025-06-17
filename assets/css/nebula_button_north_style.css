@@ -12,7 +12,7 @@ body {
 .movement-instructions {
   position: absolute;
   top: 50%;
-  left: calc(50% - 160px - 160px); /* Card width/2 + offset */
+  left: calc(50% - 160px - 180px); /* Card width/2 + offset */
   transform: translateY(-50%);
   font-family: 'Space Mono', monospace;
   font-size: 12px;
