@@ -21,6 +21,7 @@ window.addEventListener("load", function () {
   container.style.top = positionY + 'px';
 
   const removeClasses = () => {
+    classes = Array.from(samurai.classList);   
     classes.forEach((classe) => {
       if (classe !== "samurai") {
         samurai.classList.remove(classe);
@@ -181,8 +182,6 @@ window.addEventListener("load", function () {
   };
 
   window.addEventListener("keydown", function (ev) {
-    classes = Array.from(samurai.classList);
-    console.log("keydown");
     removeClasses();
     keys[ev.key] = true;
     
