@@ -72,6 +72,19 @@ body {
   z-index: 998;
 }
 
+/* Main card slide right hide */
+.card-container.slide-right-hide {
+  position: fixed;
+  left: 150%;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 998;
+}
+
+
+
 .upper-container {
   height: 140px;
   background: #ffe600;

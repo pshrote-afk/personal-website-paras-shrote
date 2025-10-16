@@ -2,3 +2,4 @@
 2.  and other pages. Then integrate with slide and animation
 3. put wasd and k on left and right of card. (cause on high zoom it gets hidden behind button)
 4. Use png image of arrow keys to control the samurai. (Use arrow keys to move.)
+5. Rename 'author' to 'north' in .html .css and .js

@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="./assets/css/index_styles.css" />
   <link rel="stylesheet" href="./assets/css/nebula_button_north_styles.css" />
   <link rel="stylesheet" href="./assets/css/nebula_button_east_styles.css" />
+  <link rel="stylesheet" href="./assets/css/nebula_button_west_styles.css" />
 
   <link rel="stylesheet" href="./assets/css/samurai_styles.css" />
 </head>
@@ -67,6 +68,11 @@
     <h6>Testing EAST</h6>
   </div>
 
+<!-- Testing West section -->
+  <div class="west-container" aria-hidden="true">
+    <h6>Testing WEST</h6>
+  </div>
+
 <!-- Nebula button north -->
   <div class="nebula-button-north" id="nebula-button-north">
     <div class="button-label">Author</div>
@@ -93,6 +99,18 @@
     </label>
   </div>
 
+<!-- Nebula button west -->
+  <div class="nebula-button-west" id="nebula-button-west">
+    <div class="button-label">Developer</div>
+    <label class="container">
+      <input type="checkbox" id="toggleWest" aria-controls="west-section" aria-expanded="false" />
+      <div class="checkbox-wrapper">
+        <div class="checkmark"></div>
+        <div class="nebula-glow"></div>
+        <div class="sparkle-container"></div>
+      </div>
+    </label>
+  </div>
 
 
   <!-- Samurai character - positioned anywhere on page -->
@@ -102,6 +120,7 @@
 
 <script src="./assets/js/toggleAuthor.js"></script>
 <script src="./assets/js/toggleEast.js"></script>
+<script src="./assets/js/toggleWest.js"></script>
 <script src="./assets/js/samurai.js"></script>
 <script src="./assets/js/toggleContact.js"></script>  <!--For displaying contact information onto card-->
 </body>

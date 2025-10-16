@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const mainCard = document.querySelector('.card-container');
     const samuraiContainer = document.querySelector('.samurai-container');
     const northButton = document.getElementById("nebula-button-north");
+    const westButton = document.getElementById("nebula-button-west");
 
     let isEastActive = false;
     
@@ -14,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
             eastContainer.classList.add('slide-right-show');
             toggleEastButton.setAttribute('aria-expanded', 'true');
             northButton.style.visibility = 'hidden';
+            westButton.style.visibility = 'hidden';
             isEastActive = true;
             
 
@@ -25,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
             mainCard.classList.remove('slide-left-hide');
             toggleEastButton.setAttribute('aria-expanded', 'false');
             northButton.style.visibility = 'visible';
+            westButton.style.visibility = 'visible';
             isEastActive = false;
             
             // Show samurai when returning to main view
