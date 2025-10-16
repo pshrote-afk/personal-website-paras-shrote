@@ -1,4 +1,3 @@
-
 window.addEventListener("load", function () {
   const samurai = document.querySelector(".samurai");
   const container = document.querySelector(".samurai-container");
@@ -15,12 +14,14 @@ window.addEventListener("load", function () {
   let facingRight = true;
   let isInProfileContainer = true;
   let isNearNebulaButton = false; // Track proximity to nebula button
+  let isNearEastButton = false; // Track proximity to east button
   
   // Set initial position in profile container
   container.style.left = positionX + 'px';
   container.style.top = positionY + 'px';
 
   const removeClasses = () => {
+    classes = Array.from(samurai.classList);   
     classes.forEach((classe) => {
       if (classe !== "samurai") {
         samurai.classList.remove(classe);
@@ -72,6 +73,47 @@ window.addEventListener("load", function () {
     }
     
     return isNearNebulaButton;
+  };
+
+  const checkEastButtonProximity = () => {
+    const eastButton = document.querySelector('.nebula-button-east');
+    if (!eastButton) return false;
+    
+    const eastRect = eastButton.getBoundingClientRect();
+    const samuraiCenterX = positionX + 100; // Center of samurai (doubled size)
+    const samuraiCenterY = positionY + 100;
+    
+    // Expanded interaction area - check if samurai is within 50px of button edges
+    const proximityDistance = 50;
+    const wasNearButton = isNearEastButton;
+    
+    isNearEastButton = (
+      samuraiCenterX >= eastRect.left - proximityDistance &&
+      samuraiCenterX <= eastRect.right + proximityDistance &&
+      samuraiCenterY >= eastRect.top - proximityDistance &&
+      samuraiCenterY <= eastRect.bottom + proximityDistance
+    );
+    
+    // Simulate CSS hover state when near
+    if (wasNearButton !== isNearEastButton) {
+      if (isNearEastButton) {
+        // Apply the same hover effect from CSS by directly styling the checkmark
+        const checkmark = eastButton.querySelector('.checkmark');
+        if (checkmark) {
+          checkmark.style.transform = 'scale(1.1)';
+          checkmark.style.boxShadow = '0 0 12px rgba(75, 94, 170, 0.5)';
+        }
+      } else {
+        // Remove hover effect
+        const checkmark = eastButton.querySelector('.checkmark');
+        if (checkmark) {
+          checkmark.style.transform = '';
+          checkmark.style.boxShadow = '';
+        }
+      }
+    }
+    
+    return isNearEastButton;
   };
 
   const checkIfInProfileContainer = () => {
@@ -136,11 +178,10 @@ window.addEventListener("load", function () {
     
     checkIfInProfileContainer();
     checkNebulaButtonProximity(); // Check button proximity every frame
+    checkEastButtonProximity(); // Check east button proximity every frame
   };
 
   window.addEventListener("keydown", function (ev) {
-    classes = Array.from(samurai.classList);
-    console.log("keydown");
     removeClasses();
     keys[ev.key] = true;
     
@@ -169,6 +210,14 @@ window.addEventListener("load", function () {
           if (toggleButton) {
             toggleButton.click();
             console.log("Nebula button toggled!"); // Debug log
+          }
+        }
+        // Check if samurai is near east button and toggle it
+        if (isNearEastButton) {
+          const toggleEastButton = document.getElementById('toggleEast');
+          if (toggleEastButton) {
+            toggleEastButton.click();
+            console.log("East button toggled!"); // Debug log
           }
         }
         break;
