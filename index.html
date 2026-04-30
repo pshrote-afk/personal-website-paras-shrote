@@ -1,127 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Paras Shrote - Developer, Author & Insight Expert</title>
-  <link rel="stylesheet" href="./assets/css/index_styles.css" />
-  <link rel="stylesheet" href="./assets/css/nebula_button_north_styles.css" />
-  <link rel="stylesheet" href="./assets/css/nebula_button_east_styles.css" />
-  <link rel="stylesheet" href="./assets/css/nebula_button_west_styles.css" />
-
-  <link rel="stylesheet" href="./assets/css/samurai_styles.css" />
-</head>
-<body>
-
- 
-  
-  <div class="card-container">
-
-   <h6 class="movement-instructions">Use <span><img src="./assets/img/arrow-keys.jpg" style="width:64px;height:64px;vertical-align:-15px"></span> keys to move.</h6>	
-   <h6 class="attack-instructions">Use K on buttons to interact.</h6>
-
-    <div class="upper-container">
-      <div class="image-container" id="profileImageContainer">
-        <!-- Samurai will be positioned here initially, but can move anywhere -->
-      </div>
-    </div>
-    <div class="lower-container">
-      <div>
-        <h3>Paras Shrote</h3>
-        <h4>Developer, Author, Triathlete.</h4>
-      </div>
-      <div>
-        <p>I like climbing trees. Sometimes I read, other times I write. Always I observe.</p>
-      </div>
-      <div>
-        <a href="#" class="btn">Contact now</a>
-      </div>
-    </div>
-  </div>
-
-
-<!-- Testing North section -->
-  <div class="author-container" aria-hidden="true">
-    <div class="card-container">
-      <div class="upper-container">
-        <div class="image-container">
-          <img src="./assets/img/profile_avatar.svg" alt="profile image" />
-        </div>
-      </div>
-      <div class="lower-container">
-        <div>
-          <h3>Shrote</h3>
-          <h4>Author, Developer, Triathlete.</h4>
-        </div>
-        <div>
-          <p>I like climbing trees. Sometimes I read, other times I write. Always I observe.</p>
-        </div>
-        <div>
-          <a href="#" class="btn">Contact now</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-<!-- Testing East section -->
-  <div class="east-container" aria-hidden="true">
-    <h6>Testing EAST</h6>
-  </div>
-
-<!-- Testing West section -->
-  <div class="west-container" aria-hidden="true">
-    <h6>Testing WEST</h6>
-  </div>
-
-<!-- Nebula button north -->
-  <div class="nebula-button-north" id="nebula-button-north">
-    <div class="button-label">Author</div>
-    <label class="container">
-      <input type="checkbox" id="toggleAuthor" aria-controls="author-section" aria-expanded="false" />
-      <div class="checkbox-wrapper">
-        <div class="checkmark"></div>
-        <div class="nebula-glow"></div>
-        <div class="sparkle-container"></div>
-      </div>
-    </label>
-  </div>
-
-<!-- Nebula button east -->
-  <div class="nebula-button-east" id="nebula-button-east">
-    <div class="button-label">Triathlete</div>
-    <label class="container">
-      <input type="checkbox" id="toggleEast" aria-controls="east-section" aria-expanded="false" />
-      <div class="checkbox-wrapper">
-        <div class="checkmark"></div>
-        <div class="nebula-glow"></div>
-        <div class="sparkle-container"></div>
-      </div>
-    </label>
-  </div>
-
-<!-- Nebula button west -->
-  <div class="nebula-button-west" id="nebula-button-west">
-    <div class="button-label">Developer</div>
-    <label class="container">
-      <input type="checkbox" id="toggleWest" aria-controls="west-section" aria-expanded="false" />
-      <div class="checkbox-wrapper">
-        <div class="checkmark"></div>
-        <div class="nebula-glow"></div>
-        <div class="sparkle-container"></div>
-      </div>
-    </label>
-  </div>
-
-
-  <!-- Samurai character - positioned anywhere on page -->
-  <div class="samurai-container">
-    <div class="samurai idle"></div>
-  </div>
-
-<script src="./assets/js/toggleAuthor.js"></script>
-<script src="./assets/js/toggleEast.js"></script>
-<script src="./assets/js/toggleWest.js"></script>
-<script src="./assets/js/samurai.js"></script>
-<script src="./assets/js/toggleContact.js"></script>  <!--For displaying contact information onto card-->
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>personal-website-paras-shrote</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
