@@ -45,7 +45,7 @@ export default function App() {
             Use{" "}
             <span>
               <img
-                src="/assets/img/arrow-keys.jpg"
+                src={`${import.meta.env.BASE_URL}assets/img/arrow-keys.jpg`}
                 style={{ width: 64, height: 64, verticalAlign: "-15px" }}
                 alt="arrow keys"
               />

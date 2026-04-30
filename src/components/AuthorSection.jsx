@@ -19,7 +19,7 @@ export default function AuthorSection({ visible }) {
         <div style={styles.upperContainer}>
           <div style={styles.imageContainer}>
             <img
-              src="/assets/img/profile_avatar.svg"
+              src={`${import.meta.env.BASE_URL}/assets/img/profile_avatar.svg`}              
               alt="profile"
               style={styles.profileImg}
             />
