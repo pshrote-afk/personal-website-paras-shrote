@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono&display=swap");
+
+.s-idle {
+  background-image: url('https://assets.codepen.io/97137/s__IDLE.png');
+  animation: s-idle 0.7s steps(10, end) infinite;
+}
+.s-run {
+  background-image: url('https://assets.codepen.io/97137/s_RUN.png');
+  animation: s-run 1.5s steps(16) infinite;
+}
+.s-attack {
+  background-image: url('https://assets.codepen.io/97137/s__ATTACK+1.png');
+  animation: s-attack 0.35s steps(7, end) infinite;
+}
+
+@keyframes s-idle   { 0% { background-position-x: 0; } 100% { background-position-x: -960px;  } }
+@keyframes s-run    { 0% { background-position-x: 0; } 100% { background-position-x: -1536px; } }
+@keyframes s-attack { 0% { background-position-x: 0; } 100% { background-position-x: -672px;  } }
+
+.typing-cursor {
+  animation: blink 1s infinite;
+  font-weight: bold;
+}
+@keyframes blink {
+  0%,  50%  { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
