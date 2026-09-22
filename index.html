@@ -1,13 +1,267 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>personal-website-paras-shrote</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Paras Shrote — Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#09090b; --panel:#101012; --card:#151517; --border:#232326;
+    --fg:#f4f4f5; --muted:#8b8b93; --muted2:#5f5f68;
+    --accent:#f2b632; --accent-dim:#3a2f14;
+    --radius:8px;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *{box-sizing:inherit;margin:0;padding:0;}
+  html{scroll-padding-top:env(safe-area-inset-top,0px); scroll-behavior:smooth;}
+  body{
+    background:var(--bg); color:var(--fg);
+    font-family:'Inter',system-ui,-apple-system,sans-serif;
+    font-size:15px; line-height:1.6;
+    min-height:100%;
+  }
+  .mono{font-family:'JetBrains Mono',ui-monospace,monospace;}
+  a{color:inherit; text-decoration:none;}
+
+  .shell{display:flex; max-width:1180px; margin:0 auto;}
+
+  /* ---- Sidebar ---- */
+  .sidebar{
+    width:260px; flex-shrink:0; padding:48px 28px;
+    position:sticky; top:0; height:100vh; overflow-y:auto;
+    border-right:1px solid var(--border);
+  }
+  .brand{display:flex; align-items:center; gap:10px; margin-bottom:36px;}
+  .brand-mark{
+    width:34px; height:34px; border-radius:7px; background:var(--card);
+    border:1px solid var(--border); display:flex; align-items:center; justify-content:center;
+    font-family:'JetBrains Mono'; font-weight:500; color:var(--accent); font-size:15px;
+  }
+  .brand-name{font-weight:600; font-size:14.5px;}
+  .brand-role{font-size:12px; color:var(--muted); margin-top:1px;}
+
+  .status{
+    display:flex; align-items:center; gap:7px; font-size:12.5px; color:var(--muted);
+    padding:9px 10px; border:1px solid var(--border); border-radius:var(--radius); margin-bottom:32px;
+  }
+  .dot{width:6px; height:6px; border-radius:50%; background:#4ade80; box-shadow:0 0 0 3px rgba(74,222,128,.15);}
+
+  nav.side-nav{display:flex; flex-direction:column; gap:2px; margin-bottom:32px;}
+  nav.side-nav a{
+    font-size:13.5px; color:var(--muted); padding:8px 10px; border-radius:6px;
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  nav.side-nav a:hover{color:var(--fg); background:var(--panel);}
+  nav.side-nav a .n{font-family:'JetBrains Mono'; font-size:11px; color:var(--muted2);}
+
+  .side-foot{font-size:12px; color:var(--muted2); border-top:1px solid var(--border); padding-top:16px;}
+  .side-foot a{color:var(--muted); display:block; margin-bottom:6px;}
+  .side-foot a:hover{color:var(--fg);}
+
+  /* ---- Main ---- */
+  main{flex:1; min-width:0; padding:64px 48px 100px;}
+  section{padding-top:70px; margin-top:-70px;}
+  section + section{margin-top:64px;}
+
+  .eyebrow{font-family:'JetBrains Mono'; font-size:12px; color:var(--accent); margin-bottom:14px;}
+
+  h1{font-size:34px; font-weight:700; letter-spacing:-0.02em; line-height:1.25; max-width:560px;}
+  h1 .hl{color:var(--muted);}
+  .lede{color:var(--muted); max-width:520px; margin-top:16px; font-size:15px;}
+
+  .cta-row{display:flex; gap:10px; margin-top:28px;}
+  .btn{
+    padding:9px 16px; border-radius:6px; font-size:13.5px; font-weight:500;
+    border:1px solid var(--border); display:inline-flex; align-items:center; gap:7px;
+  }
+  .btn.primary{background:var(--fg); color:#0a0a0b; border-color:var(--fg);}
+  .btn.ghost{color:var(--fg);}
+  .btn.ghost:hover{background:var(--panel);}
+
+  h2{font-size:12px; font-weight:600; text-transform:none; color:var(--muted); font-family:'JetBrains Mono'; margin-bottom:20px; letter-spacing:0.02em;}
+
+  /* project cards */
+  .projects{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  .pcard{
+    border:1px solid var(--border); border-radius:var(--radius); background:var(--panel);
+    padding:20px; display:flex; flex-direction:column; gap:10px;
+  }
+  .pcard .top{display:flex; justify-content:space-between; align-items:flex-start;}
+  .pcard .icon{
+    width:30px; height:30px; border-radius:6px; background:var(--card); border:1px solid var(--border);
+    display:flex; align-items:center; justify-content:center; font-size:14px;
+  }
+  .pcard .status-pill{font-size:10.5px; font-family:'JetBrains Mono'; color:var(--muted); border:1px solid var(--border); padding:2px 7px; border-radius:20px;}
+  .pcard h3{font-size:15px; font-weight:600;}
+  .pcard p{font-size:13px; color:var(--muted); flex:1;}
+  .tags{display:flex; flex-wrap:wrap; gap:6px; margin-top:4px;}
+  .tag{font-family:'JetBrains Mono'; font-size:11px; color:var(--muted); background:var(--card); border:1px solid var(--border); padding:3px 8px; border-radius:5px;}
+  .pcard .link-row{font-size:12.5px; color:var(--accent); margin-top:2px;}
+
+  /* skills */
+  .skill-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden;}
+  .skill-cell{background:var(--panel); padding:16px 18px;}
+  .skill-cell .head{font-size:13px; font-weight:600; margin-bottom:8px; display:flex; align-items:center; gap:7px;}
+  .skill-cell .head .dot2{width:5px;height:5px;border-radius:50%;background:var(--accent);}
+  .skill-cell ul{list-style:none; display:flex; flex-direction:column; gap:5px;}
+  .skill-cell li{font-size:12.5px; color:var(--muted);}
+
+  /* activity log */
+  .log{border:1px solid var(--border); border-radius:var(--radius); background:var(--panel); overflow:hidden;}
+  .log-row{display:flex; gap:14px; padding:13px 18px; font-size:13px; border-bottom:1px solid var(--border);}
+  .log-row:last-child{border-bottom:none;}
+  .log-row time{font-family:'JetBrains Mono'; font-size:11.5px; color:var(--muted2); width:70px; flex-shrink:0; padding-top:1px;}
+  .log-row .desc{color:var(--muted);}
+  .log-row .desc b{color:var(--fg); font-weight:500;}
+
+  /* contact */
+  .contact-card{
+    border:1px solid var(--border); border-radius:var(--radius); background:var(--panel);
+    padding:28px; display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap;
+  }
+  .contact-card h3{font-size:17px; font-weight:600; margin-bottom:5px;}
+  .contact-card p{font-size:13px; color:var(--muted);}
+  .contact-links{display:flex; gap:10px;}
+
+  footer{margin-top:60px; padding-top:20px; border-top:1px solid var(--border); font-size:12px; color:var(--muted2); display:flex; justify-content:space-between;}
+
+  @media (max-width:860px){
+    .sidebar{display:none;}
+    main{padding:40px 20px 80px;}
+    .projects{grid-template-columns:1fr;}
+    .skill-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark">PS</div>
+      <div>
+        <div class="brand-name">Paras Shrote</div>
+        <div class="brand-role">Developer</div>
+      </div>
+    </div>
+
+    <div class="status"><span class="dot"></span> Open to interesting problems</div>
+
+    <nav class="side-nav">
+      <a href="#work"><span>Work</span><span class="n">01</span></a>
+      <a href="#projects"><span>Projects</span><span class="n">02</span></a>
+      <a href="#skills"><span>Skills</span><span class="n">03</span></a>
+      <a href="#activity"><span>Activity</span><span class="n">04</span></a>
+      <a href="#contact"><span>Contact</span><span class="n">05</span></a>
+    </nav>
+
+    <div class="side-foot">
+      <a href="#">github.com/pshrote-afk</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Email</a>
+    </div>
+  </aside>
+
+  <main>
+
+    <section id="work">
+      <div class="eyebrow">// hello</div>
+      <h1>I build tools that quietly make<br><span class="hl">Development less painful.</span></h1>
+      <p class="lede">Developer working on solutions tooling — Proj1, proj2 and the occasional side project that has nothing to do with Dev at all.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="#projects">View projects</a>
+        <a class="btn ghost" href="#contact">Get in touch</a>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>PROJECTS</h2>
+      <div class="projects">
+
+        <div class="pcard">
+          <div class="top">
+            <div class="icon">🗂️</div>
+            <div class="status-pill">active</div>
+          </div>
+          <h3>Proj1</h3>
+          <p>Desc</p>
+          <div class="tags"><span class="tag">C++</span><span class="tag">TypeScript</span><span class="tag">HTML</span></div>
+          <div class="link-row">github.com/pshrote-afk/link→</div>
+        </div>
+
+         <div class="pcard">
+          <div class="top">
+            <div class="icon">🗂️</div>
+            <div class="status-pill">research</div>
+          </div>
+          <h3>Proj1</h3>
+          <p>Desc</p>
+          <div class="tags"><span class="tag">C++</span><span class="tag">TypeScript</span><span class="tag">HTML</span></div>
+          <div class="link-row">github.com/pshrote-afk/link→</div>
+        </div>
+
+        <div class="pcard">
+          <div class="top">
+            <div class="icon">⌨️</div>
+            <div class="status-pill">shipped</div>
+          </div>
+          <h3>Keymappers for all 3 OS</h3>
+          <p>Keyboard remapping repository - across Windows, macOS and Linux.</p>
+          <div class="tags"><span class="tag">Tooling</span><span class="tag">Tag</span></div>
+          <div class="link-row">github.com/pshrote-afk/keymappers →</div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>SKILLS</h2>
+      <div class="skill-grid">
+        <div class="skill-cell">
+          <div class="head"><span class="dot2"></span>Core dev</div>
+          <ul><li>Java</li><li>Python</li><li>Git &amp; GitHub</li></ul>
+        </div>
+        <div class="skill-cell">
+          <div class="head"><span class="dot2"></span>Exploring</div>
+          <ul><li>Android — Kotlin, Jetpack Compose</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="activity">
+      <h2>RECENT ACTIVITY</h2>
+      <div class="log">
+        <div class="log-row"><time class="mono">this wk</time><span class="desc">Iterated on <b>Keymapper</b> toggle flow.</span></div>
+        <div class="log-row"><time class="mono">ongoing</time><span class="desc">Refining cross-OS key mappings for the <b>keymappers</b> repo.</span></div>
+        <div class="log-row"><time class="mono">learning</time><span class="desc">Working through Android toward the <b>filler</b> exam.</span></div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>CONTACT</h2>
+      <div class="contact-card">
+        <div>
+          <h3>Want to build something?</h3>
+          <p>Happy to talk tooling, side projects, or anything in between.</p>
+        </div>
+        <div class="contact-links">
+          <a class="btn ghost" href="#">GitHub</a>
+          <a class="btn primary" href="#">Email me</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <span>Paras Shrote</span>
+      <span class="mono">built with shadcn-style tokens</span>
+    </footer>
+
+  </main>
+</div>
+</body>
 </html>
